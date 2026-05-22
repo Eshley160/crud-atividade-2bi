@@ -25,3 +25,19 @@ Route::get('/admin/cursos/excluir/{id}',
 ['as' =>'admin.cursos.excluir',
 'uses'=>'App\Http\Controllers\Admin\CursoController@excluir']);
 
+Route::get('/admin/alunos/adicionar/{id}',
+['as' =>'admin.alunos.adicionar',
+'uses'=>'App\Http\Controllers\Admin\AlunoController@adicionar']);
+
+Route::get('/admin/alunos/editar/{id}',
+['as' =>'admin.alunos.editar',
+'uses'=>'App\Http\Controllers\Admin\AlunoController@editar']);
+
+Route::get('/admin/alunos/form/{id}',
+['as' =>'admin.alunos.form',
+'uses'=>'App\Http\Controllers\Admin\AlunoController@form']);
+
+Route::get('/admin/alunos/{id}',
+['as' =>'admin.alunos.index',
+'uses'=>'App\Http\Controllers\Admin\AlunoController@index']);
+
