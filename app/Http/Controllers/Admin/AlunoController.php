@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Aluno;
+use App\Models\Curso;
+
 
 class AlunoController extends Controller
 {
@@ -15,13 +17,12 @@ class AlunoController extends Controller
 
     public function adicionar(){
         $cursos = Curso::all();
-        return view('admin.alunos.adicionar' ,compact('cursos'));
+        return view('admin.alunos.adicionar', compact('cursos'));
     }
-
+    
     public function editar($id){
         $row = Aluno::find($id);
-        //carrega o registro (realiza select e um fetch internamente) e guarda na variável $row
-        $cursos = Cursos::all();
+        $cursos = Curso::all();
         return view('admin.alunos.editar', compact('row', 'cursos'));
     }
 
@@ -30,13 +31,10 @@ class AlunoController extends Controller
         return redirect()->route('admin.alunos');
     }
 
+    
+
     private function ajusteDados(Request $req){
-        $dados = $req->except(['_token', '_method']);
-        if(isset($dados['publicado'])){
-            $dados['publicado'] = 'sim';
-        }else{
-            $dados['publicado'] = 'nao';
-        }
+        $dados = $req->all();
         if($req->hasFile('arquivo')){
             $imagem = $req->file('arquivo');
             $num = rand(1111,9999);
@@ -52,14 +50,16 @@ class AlunoController extends Controller
     public function salvar(Request $req)
     {
         $dados = $this->ajusteDados($req);
-        Alunos::create($dados);
+        Aluno::create($dados);
         return redirect()->route('admin.alunos');
     }
 
     public function atualizar(Request $req, $id)
     {
         $dados = $this->ajusteDados($req);
-        Alunos::find($id)->update($dados);
+        Aluno::find($id)->update($dados);
         return redirect()->route('admin.alunos');
     }
+
+    
 }
