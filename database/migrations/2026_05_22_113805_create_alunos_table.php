@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('celular');
             $table->string('imagem');
             $table->unsignedBigInteger('id_curso');
-            $table->foreign('id_curso')->references('id')->on('alunos');
+            $table->foreign('id_curso')->references('id')->on('cursos');
             $table->timestamps();
         });
     }

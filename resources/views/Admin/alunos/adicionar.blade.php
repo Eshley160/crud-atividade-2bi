@@ -6,7 +6,7 @@
         <div class="row">
             <form class="" action="{{route('admin.alunos.salvar')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                @include('admin.alunos._form')
+                @include('admin.alunos._form', ['cursos' => $cursos])
                 <button class="btn deep-orange">Salvar</button>
             </form>
         </div>

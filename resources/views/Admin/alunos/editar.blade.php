@@ -9,7 +9,7 @@ extends('layout.site')
         method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="_method" value="put">
-        @include('admin.alunos._form')
+        @include('admin.alunos._form', ['cursos' => $cursos])
         <button class="btn deep-orange">Salvar</button>
         </form>
     </div>

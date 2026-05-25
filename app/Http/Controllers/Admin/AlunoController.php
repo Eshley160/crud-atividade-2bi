@@ -14,20 +14,20 @@ class AlunoController extends Controller
     }
 
     public function adicionar(){
-        return view('admin.alunos.adicionar');
+        $cursos = Curso::all();
+        return view('admin.alunos.adicionar' ,compact('cursos'));
     }
 
     public function editar($id){
         $row = Aluno::find($id);
         //carrega o registro (realiza select e um fetch internamente) e guarda na variável $row
-        return view('admin.alunos.editar', compact('row'));
+        $cursos = Cursos::all();
+        return view('admin.alunos.editar', compact('row', 'cursos'));
     }
 
     public function excluir($id){
         Aluno::find($id)->delete();
-        // apos selecionar o registro, é chamado o método DELETE do OBJETO registro
         return redirect()->route('admin.alunos');
-        //depois de excluir volta a listar os cursos
     }
 
     private function ajusteDados(Request $req){
